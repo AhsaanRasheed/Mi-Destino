@@ -1,0 +1,129 @@
+
+import firestore from '@react-native-firebase/firestore';
+import React,{useState,useEffect} from 'react';
+import { Button,Text,TextInput, View, StyleSheet,TouchableOpacity,UseEffect } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import auth from '@react-native-firebase/auth';
+
+export default function HomeRescueWorker({ navigation}) {
+
+
+  const [name,setName]= useState('');
+
+ 
+    /*function getname(){
+      firestore().collection('user')
+      .doc("" + auth().currentUser.uid
+      )
+      .get()
+      .then(doc => {
+        setName(doc.data().name)
+        //console.log(name)
+        //return name
+      });}*/
+
+    //   useEffect(()=>{
+    //     getdata();
+    //   },[])
+
+      function signout(){
+        auth()
+        .signOut()
+        .then(() => console.log('User signed out!'));
+        navigation.navigate('welcome')
+      }
+
+
+
+//   function getdata(){    
+//   firestore()
+//   .collection('complaint')
+//   //.doc(auth().currentUser.uid)
+//   .where('status', '==', false )
+//   .get()
+//   .then(querySnapshot => {
+//     console.log('Total users: ', querySnapshot.size);
+
+//     querySnapshot.forEach(documentSnapshot => {
+//       console.log('User ID: ', documentSnapshot.id, documentSnapshot.data().description);
+//     });
+//   });}
+
+    
+  return (
+    <View>
+    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+    <Text style={{paddingTop:40,fontSize:20,fontWeight:'bold',color:'#11c09f'}}>
+    Rescue Worker Portal 
+    </Text>
+
+    
+    </View>
+
+    <TouchableOpacity
+         style={{
+           backgroundColor: '#11c09f', 
+           borderRadius:25, 
+           marginLeft:75, 
+           marginRight:75,
+           marginBottom:30, 
+           alignItems: 'center',
+           justifyContent:'center',
+           height:35,
+           marginTop:10
+           
+           }}
+           onPress={() => navigation.navigate('RescueCloseComplaints')}
+           >
+
+         <Text style={{fontSize:15, color: 'white'}}>Close Complaints</Text>
+    </TouchableOpacity>
+    
+
+    <TouchableOpacity
+         style={{
+           backgroundColor: '#11c09f', 
+           borderRadius:25, 
+           marginLeft:75, 
+           marginRight:75,
+           marginBottom:30, 
+           alignItems: 'center',
+           justifyContent:'center',
+           height:35,
+           marginTop:10
+           
+           }}
+           onPress={() => navigation.navigate('ViewRescueClosedComplaints')}
+           >
+
+         <Text style={{fontSize:15, color: 'white'}}>View Closed Complaints</Text>
+    </TouchableOpacity>
+    
+    <TouchableOpacity
+         style={{
+           backgroundColor: '#11c09f', 
+           borderRadius:25, 
+           marginLeft:75, 
+           marginRight:75,
+           marginBottom:30, 
+           alignItems: 'center',
+           justifyContent:'center',
+           height:35,
+           marginTop:10
+           
+           }}
+           onPress={() => signout()}
+           >
+
+         <Text style={{fontSize:15, color: 'white'}}>Sign Out</Text>
+    </TouchableOpacity>
+
+    
+    </View>
+  );
+}
+
+
+
+
